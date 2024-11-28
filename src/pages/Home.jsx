@@ -6,7 +6,6 @@ import { searchMovies, getPopularMovies } from "../services/api";
 
 function Home() {
     const [searchQuery, setSearchQuery] = useState("");
-
     const [movies, setMovies] = useState ([])
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -36,7 +35,7 @@ function Home() {
         setLoading(true)
         try {
             const searchResults = await searchMovies(searchQuery)
-            searchMovies(searchResults)
+            setMovies(searchResults)
             setError(null)
         } catch(err) {
             console.log(err)
@@ -44,8 +43,6 @@ function Home() {
         } finally {
             setLoading(false)
         }
-
-
     };
 
     return ( <div className="home">
